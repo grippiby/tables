@@ -1,0 +1,56 @@
+@import 'nullstyle.scss';
+
+$font-size: 1rem;
+$font-color: lch(28 99 35);
+
+html {
+	font-size: $font-size;
+	color: $font-color;
+	padding-left: 40px;
+}
+table {
+	border: 3px solid black;
+	margin-left: 30px;
+	margin-top: 30px;
+}
+input {
+	border: 1px solid #000;
+}
+th,
+tr,
+td,
+button {
+	border: 1px solid #000;
+	margin-left: 10px;
+}
+
+/* 4edit cell */
+p {
+	padding: 5px;
+}
+
+p[contentEditable] {
+	box-shadow: 0 0 0 1px red;
+	outline: none;
+}
+
+//form validations
+#error {
+	color: red;
+	font-weight: bold;
+}
+.form label {
+	width: 20%;
+}
+.form input {
+	width: 20%;
+	margin-top: 2px;
+	padding: 5px;
+}
+
+.form input[type='submit'] {
+	background: #333;
+	border: none;
+	color: #fff;
+	padding: 10px;
+}
