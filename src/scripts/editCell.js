@@ -1,4 +1,4 @@
-import { updateInfo } from './getUsersFromApi'
+import { baseURL } from './getUsersFromApi'
 
 export function editCell() {
 	let edit = document.querySelectorAll('.edit')
@@ -27,4 +27,26 @@ export function editCell() {
 			editMode = !editMode
 		}
 	}
+}
+
+async function updateInfo(id, value) {
+	const error = document.getElementById('error')
+	const response = await fetch(`${baseURL}/${id}`, {
+		method: 'PUT',
+		body: JSON.stringify({
+			id,
+			value,
+		}),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+		},
+	}).catch((err) => {
+		error.innerHTML = err.message
+	})
+
+	if (response.status === 200) {
+		error.innerHTML = 'Успешно отредактировано'
+	}
+	const data = await response.json()
+	/* 	console.log(data) */
 }

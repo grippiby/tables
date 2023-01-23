@@ -1,7 +1,7 @@
 import { editCell } from './editCell'
 import { deleteUser } from './deleteUser'
 import { createEl, appendEl } from './tableFromArray'
-import { createNewUser } from './getUsersFromApi'
+import { baseURL } from './getUsersFromApi'
 
 export function addNewUser() {
 	const getTable = document.getElementById('container')
@@ -42,4 +42,23 @@ export function addNewUser() {
 	editCell()
 
 	createNewUser(id, addName, addPhone)
+}
+
+// фейковый запрос не оправляет данные на сервер
+async function createNewUser(id, name, phone) {
+	const response = await fetch(baseURL, {
+		method: 'POST',
+		body: JSON.stringify({
+			id: id,
+			name: `${name}`,
+			phone: `${phone}`,
+		}),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+		},
+	})
+	const data = await response.json().catch((err) => {
+		const error = document.getElementById('error')
+		error.innerHTML = err.message
+	})
 }
