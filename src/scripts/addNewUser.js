@@ -1,8 +1,9 @@
 import { editCell } from './editCell'
 import { deleteUser } from './deleteUser'
+/* let deleteUser = new ApiCenter().deleteUser() */
 import { createEl, appendEl } from './tableFromArray'
-import { baseURL } from './getUsersFromApi'
-
+/* import { baseURL } from './getUsersFromApi' */
+import { baseURL } from './apiCenter'
 export function addNewUser() {
 	const getTable = document.getElementById('container')
 	const leng = getTable.childNodes.length

@@ -1,4 +1,4 @@
-import { baseURL } from './getUsersFromApi'
+import ApiCenter from './apiCenter'
 
 export function editCell() {
 	let edit = document.querySelectorAll('.edit')
@@ -19,7 +19,7 @@ export function editCell() {
 					(key = `name: ${value},`)
 				text[i].childNodes[0].parentElement.classList.contains('text_tel') &&
 					(key = `phone: ${value},`)
-				updateInfo(id, key)
+				return new ApiCenter().updateInfo(id, key)
 			} else {
 				this.textContent = 'Save'
 				text[i].setAttribute('contentEditable', true)
@@ -27,26 +27,4 @@ export function editCell() {
 			editMode = !editMode
 		}
 	}
-}
-
-async function updateInfo(id, value) {
-	const error = document.getElementById('error')
-	const response = await fetch(`${baseURL}/${id}`, {
-		method: 'PUT',
-		body: JSON.stringify({
-			id,
-			value,
-		}),
-		headers: {
-			'Content-type': 'application/json; charset=UTF-8',
-		},
-	}).catch((err) => {
-		error.innerHTML = err.message
-	})
-
-	if (response.status === 200) {
-		error.innerHTML = 'Успешно отредактировано'
-	}
-	const data = await response.json()
-	/* 	console.log(data) */
 }

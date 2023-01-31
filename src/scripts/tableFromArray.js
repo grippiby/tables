@@ -4,11 +4,9 @@ import { deleteUser } from './deleteUser'
 export function createEl(el) {
 	return document.createElement(el)
 }
-
 export function appendEl(parent, el) {
 	return parent.appendChild(el)
 }
-
 export function getTableFromArray(usersList) {
 	const addTable = document.getElementById('container')
 
@@ -36,6 +34,7 @@ export function getTableFromArray(usersList) {
 
 		appendEl(tr, name)
 		appendEl(tr, phone)
+
 		appendEl(tr, deleteRowButton)
 
 		appendEl(addTable, tr)
