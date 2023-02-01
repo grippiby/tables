@@ -1,4 +1,4 @@
-import { editCell } from './editCell'
+import { editInfo } from './editInfo'
 import { deleteUser } from './deleteUser'
 
 export function createEl(el) {
@@ -17,17 +17,19 @@ export function getTableFromArray(usersList) {
 		const name = createEl('td')
 		const phone = createEl('td')
 		const deleteRowButton = createEl('td')
+		const editRowButton = createEl('td')
 
 		const addEditButton = `<button class="edit">Edit</button>`
 		const addDeleteButton = `<button class="delete" id=${user.id}>Delete</button>`
-
+		const addName = `<input type="text" value="${user.name}" disabled>`
+		const addPhone = `<input type="text" value="${user.phone}" disabled>`
 		id.innerHTML = `${user.id}`
-		name.innerHTML = `${user.name} ${addEditButton}`
-		name.classList.add('text', 'text_name')
-		phone.innerHTML = `${user.phone} ${addEditButton}`
-		phone.classList.add('text', 'text_tel')
+		name.innerHTML = addName
+		phone.innerHTML = addPhone
 
-		deleteRowButton.innerHTML = addDeleteButton
+		editRowButton.innerHTML = `${addEditButton}`
+		editRowButton.onclick = editInfo
+		deleteRowButton.innerHTML = `${addDeleteButton} `
 		deleteRowButton.onclick = deleteUser
 
 		appendEl(tr, id)
@@ -35,9 +37,9 @@ export function getTableFromArray(usersList) {
 		appendEl(tr, name)
 		appendEl(tr, phone)
 
+		appendEl(tr, editRowButton)
 		appendEl(tr, deleteRowButton)
 
 		appendEl(addTable, tr)
-		editCell()
 	})
 }

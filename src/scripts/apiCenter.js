@@ -35,8 +35,9 @@ class ApiCenter {
 			}
 			const data = response.json()
 			if (response.status === 200) {
-				parentRow.textContent = `User № ${id} delete successfully`
-				error.innerHTML = 'deleted!'
+				error.innerHTML = `User № ${id} delete successfully`
+				/* parentRow.textContent = `User № ${id} delete successfully` */
+				parentRow.remove()
 			}
 		}
 		return deleteData(this.baseURL).catch(
@@ -44,14 +45,15 @@ class ApiCenter {
 		)
 	}
 
-	updateInfo(id, value) {
+	updateInfo(id, name, phone) {
 		const error = document.getElementById('error')
 		const getData = async (url) => {
 			const response = await fetch(`${baseURL}/${id}`, {
 				method: 'PUT',
 				body: JSON.stringify({
 					id,
-					value,
+					name,
+					phone,
 				}),
 				headers: {
 					'Content-type': 'application/json; charset=UTF-8',
@@ -61,6 +63,23 @@ class ApiCenter {
 				error.innerHTML = 'Успешно отредактировано'
 			}
 			const data = await response.json()
+		}
+		return getData(this.baseURL).catch((err) => (error.innerHTML = err.message))
+	}
+
+	createNewUser(id, name, phone) {
+		const getData = async (url) => {
+			const response = await fetch(baseURL, {
+				method: 'POST',
+				body: JSON.stringify({
+					id: id,
+					name: `${name}`,
+					phone: `${phone}`,
+				}),
+				headers: {
+					'Content-type': 'application/json; charset=UTF-8',
+				},
+			})
 		}
 		return getData(this.baseURL).catch((err) => (error.innerHTML = err.message))
 	}
