@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Table, promise, fetch, resolve</title>
+		<link rel="icon" href="data:;base64,=" />
+	</head>
+	<body>
+		<div>
+			<div>
+				<table border="2">
+					<thead>
+						<tr>
+							<th scope="col" id="id">ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Telephone</th>
+							<!-- <th scope="col" id="delete"></th> -->
+						</tr>
+					</thead>
+					<tbody id="container"></tbody>
+				</table>
+			</div>
+		</div>
+		<br />
+		<div class="error" id="error"></div>
+		<div class="adduser__form">
+			<form onsubmit="return false">
+				<label>
+					<span>Enter your Name</span>
+
+					<input type="text" id="name" placeholder="type your Name" />
+				</label>
+				<br />
+				<br />
+				<label>
+					<span>Enter your Phone Number</span>
+
+					<input type="text" id="phone" placeholder="type your Phone" />
+				</label>
+				<div class="button">
+					<button type="submit" id="form-submit">Add User</button>
+				</div>
+			</form>
+			<div id="result"></div>
+		</div>
+	</body>
+	<script></script>
+</html>
